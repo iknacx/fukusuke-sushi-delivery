@@ -1,0 +1,115 @@
+/* Mejoras visuales globales, sin interferir con home.css */
+:root {
+  font-family: 'Segoe UI', 'Avenir', Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+  font-weight: 400;
+  color-scheme: light dark;
+  color: #222;
+  background-color: #f7f7f7;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: linear-gradient(120deg, #f7f7f7 60%, #ffe5e9 100%);
+}
+
+a {
+  font-weight: 500;
+  color: #d7263d;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+a:hover {
+  color: #a81c2a;
+  text-decoration: underline;
+}
+
+h1, h2, h3 {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+h1 {
+  font-size: 2.5em;
+  margin-bottom: 0.5em;
+}
+
+h2 {
+  font-size: 1.7em;
+  margin-bottom: 0.4em;
+}
+
+h3 {
+  font-size: 1.2em;
+  margin-bottom: 0.3em;
+}
+
+#app {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.logo {
+  height: 5em;
+  padding: 1em;
+  transition: filter 300ms;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(215,38,61,0.07);
+}
+
+.card {
+  padding: 2em;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid #d7263d;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #fff;
+  color: #d7263d;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+button:hover {
+  background-color: #d7263d;
+  color: #fff;
+  border-color: #a81c2a;
+}
+button:focus,
+button:focus-visible {
+  outline: 3px auto #d7263d;
+}
+
+@media (max-width: 700px) {
+  #app {
+    padding: 1rem;
+  }
+  h1 {
+    font-size: 2em;
+  }
+  h2 {
+    font-size: 1.2em;
+  }
+  .logo {
+    height: 3em;
+  }
+}
