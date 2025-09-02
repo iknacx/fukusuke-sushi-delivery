@@ -158,25 +158,34 @@
                 <h4>Roll Clásico</h4>
                 <p>Arroz, salmón fresco, aguacate y alga nori.</p>
                 <div class="price">$120</div>
+                <button class="add-cart-btn" data-name="Roll Clásico" data-price="120">Añadir al carrito</button>
             </div>
             <div class="item">
                 <img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=400&q=80" alt="Nigiri de Salmón">
                 <h4>Nigiri de Salmón</h4>
                 <p>Bocados de arroz con láminas de salmón fresco.</p>
                 <div class="price">$90</div>
+                <button class="add-cart-btn" data-name="Nigiri de Salmón" data-price="90">Añadir al carrito</button>
             </div>
             <div class="item">
                 <img src="https://images.unsplash.com/photo-1502741338009-cac2772e18bc?auto=format&fit=crop&w=400&q=80" alt="Sashimi Variado">
                 <h4>Sashimi Variado</h4>
                 <p>Selección de pescado fresco cortado en láminas.</p>
                 <div class="price">$150</div>
+                <button class="add-cart-btn" data-name="Sashimi Variado" data-price="150">Añadir al carrito</button>
             </div>
             <div class="item">
                 <img src="https://images.unsplash.com/photo-1525755662778-989d0524087e?auto=format&fit=crop&w=400&q=80" alt="Roll Tempura">
                 <h4>Roll Tempura</h4>
                 <p>Roll de camarón empanizado con salsa especial.</p>
                 <div class="price">$130</div>
+                <button class="add-cart-btn" data-name="Roll Tempura" data-price="130">Añadir al carrito</button>
             </div>
+        </div>
+        <div id="cart" style="margin-top:2rem;">
+            <h4>Carrito</h4>
+            <ul id="cart-items" style="list-style:none;padding:0;"></ul>
+            <div id="cart-total" style="font-weight:bold;margin-top:1rem;"></div>
         </div>
     </section>
     <section id="pedido" style="max-width:600px;margin:2rem auto;background:#fff;padding:2rem;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.08);">
@@ -200,5 +209,39 @@
     <footer>
         &copy; 2024 Fukusuke Sushi Delivery. Todos los derechos reservados.
     </footer>
+    <script>
+        // Carrito simple en memoria
+        const cart = [];
+
+        function updateCartDisplay() {
+            const cartItems = document.getElementById('cart-items');
+            const cartTotal = document.getElementById('cart-total');
+            cartItems.innerHTML = '';
+            let total = 0;
+            cart.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = `${item.name} x${item.qty} - $${item.price * item.qty}`;
+                cartItems.appendChild(li);
+                total += item.price * item.qty;
+            });
+            cartTotal.textContent = cart.length ? `Total: $${total}` : '';
+        }
+
+        document.querySelectorAll('.add-cart-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const name = this.getAttribute('data-name');
+                const price = parseInt(this.getAttribute('data-price'));
+                const found = cart.find(i => i.name === name);
+                if (found) {
+                    found.qty += 1;
+                } else {
+                    cart.push({ name, price, qty: 1 });
+                }
+                updateCartDisplay();
+            });
+        });
+
+        updateCartDisplay();
+    </script>
 </body>
 </html>
