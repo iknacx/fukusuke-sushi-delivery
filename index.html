@@ -1,11 +1,192 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Fukusuke Sushi Delivery</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            margin: 0;
+            background: #f5f5f5;
+            color: #222;
+        }
+        header {
+            background: #222;
+            color: #fff;
+            padding: 1.5rem 0;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            letter-spacing: 2px;
+        }
+        nav {
+            background: #e53935;
+            text-align: center;
+            padding: 0.5rem 0;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 1rem;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        .hero {
+            background: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+            color: #fff;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        .hero h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 8px #222;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 6px #222;
+        }
+        .btn {
+            background: #e53935;
+            color: #fff;
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+        .btn:hover {
+            background: #b71c1c;
+        }
+        .menu {
+            max-width: 900px;
+            margin: 2rem auto;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            padding: 2rem;
+        }
+        .menu h3 {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 1.7rem;
+            color: #e53935;
+        }
+        .menu-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+        }
+        .item {
+            background: #fafafa;
+            border-radius: 6px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+            padding: 1rem;
+            text-align: center;
+        }
+        .item img {
+            width: 100%;
+            max-width: 180px;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+        }
+        .item h4 {
+            margin: 0.5rem 0;
+            font-size: 1.2rem;
+            color: #222;
+        }
+        .item p {
+            font-size: 0.95rem;
+            color: #555;
+            margin-bottom: 0.5rem;
+        }
+        .item .price {
+            font-weight: bold;
+            color: #e53935;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        footer {
+            background: #222;
+            color: #fff;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 2rem;
+            font-size: 1rem;
+        }
+    </style>
 </head>
 <body>
-    pene
+    <header>
+        <h1>Fukusuke Sushi Delivery</h1>
+        <p>¡El mejor sushi directo a tu puerta!</p>
+    </header>
+    <nav>
+        <a href="#menu">Menú</a>
+        <a href="#pedido">Haz tu pedido</a>
+        <a href="#contacto">Contacto</a>
+    </nav>
+    <section class="hero">
+        <h2>Disfruta sushi fresco y delicioso en casa</h2>
+        <p>Variedad de rolls, nigiris y sashimis preparados al momento. ¡Haz tu pedido online y recíbelo rápido!</p>
+        <a href="#pedido" class="btn">Ordenar ahora</a>
+    </section>
+    <section class="menu" id="menu">
+        <h3>Menú Destacado</h3>
+        <div class="menu-items">
+            <div class="item">
+                <img src="https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=400&q=80" alt="Sushi Roll Clásico">
+                <h4>Roll Clásico</h4>
+                <p>Arroz, salmón fresco, aguacate y alga nori.</p>
+                <div class="price">$120</div>
+            </div>
+            <div class="item">
+                <img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=400&q=80" alt="Nigiri de Salmón">
+                <h4>Nigiri de Salmón</h4>
+                <p>Bocados de arroz con láminas de salmón fresco.</p>
+                <div class="price">$90</div>
+            </div>
+            <div class="item">
+                <img src="https://images.unsplash.com/photo-1502741338009-cac2772e18bc?auto=format&fit=crop&w=400&q=80" alt="Sashimi Variado">
+                <h4>Sashimi Variado</h4>
+                <p>Selección de pescado fresco cortado en láminas.</p>
+                <div class="price">$150</div>
+            </div>
+            <div class="item">
+                <img src="https://images.unsplash.com/photo-1525755662778-989d0524087e?auto=format&fit=crop&w=400&q=80" alt="Roll Tempura">
+                <h4>Roll Tempura</h4>
+                <p>Roll de camarón empanizado con salsa especial.</p>
+                <div class="price">$130</div>
+            </div>
+        </div>
+    </section>
+    <section id="pedido" style="max-width:600px;margin:2rem auto;background:#fff;padding:2rem;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.08);">
+        <h3 style="color:#e53935;text-align:center;">Haz tu pedido</h3>
+        <form>
+            <label for="nombre">Nombre:</label><br>
+            <input type="text" id="nombre" name="nombre" required style="width:100%;padding:0.5rem;margin-bottom:1rem;"><br>
+            <label for="direccion">Dirección:</label><br>
+            <input type="text" id="direccion" name="direccion" required style="width:100%;padding:0.5rem;margin-bottom:1rem;"><br>
+            <label for="pedido">Tu pedido:</label><br>
+            <textarea id="pedido" name="pedido" rows="3" required style="width:100%;padding:0.5rem;margin-bottom:1rem;"></textarea><br>
+            <button type="submit" class="btn" style="width:100%;">Enviar pedido</button>
+        </form>
+    </section>
+    <section id="contacto" style="max-width:600px;margin:2rem auto;background:#fff;padding:2rem;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.08);">
+        <h3 style="color:#e53935;text-align:center;">Contacto</h3>
+        <p style="text-align:center;">WhatsApp: <a href="https://wa.me/5491123456789" style="color:#e53935;text-decoration:none;">+54 9 11 2345-6789</a></p>
+        <p style="text-align:center;">Email: <a href="mailto:info@fukusuke-sushi.com" style="color:#e53935;text-decoration:none;">info@fukusuke-sushi.com</a></p>
+        <p style="text-align:center;">Horario: Lun a Dom, 12:00 a 23:00 hs</p>
+    </section>
+    <footer>
+        &copy; 2024 Fukusuke Sushi Delivery. Todos los derechos reservados.
+    </footer>
 </body>
 </html>
