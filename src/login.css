@@ -1,0 +1,96 @@
+/* Embellece el modal de inicio de sesión */
+#login-modal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+#login-modal .login-modal-content {
+  background: #fff;
+  padding: 2.5rem 2rem 2rem 2rem;
+  border-radius: 14px;
+  min-width: 320px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  position: relative;
+  animation: modalFadeIn 0.3s;
+}
+
+@keyframes modalFadeIn {
+  from { transform: translateY(-40px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+#login-modal h2 {
+  margin-top: 0;
+  margin-bottom: 1.2rem;
+  color: #d72638;
+  text-align: center;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+#login-modal form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+#login-modal label {
+  font-weight: 500;
+  margin-bottom: 0.3rem;
+  color: #222;
+}
+
+#login-modal input[type="email"],
+#login-modal input[type="password"] {
+  padding: 0.6rem 0.8rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  font-size: 1rem;
+  background: #fafafa;
+  transition: border 0.2s;
+}
+
+#login-modal input[type="email"]:focus,
+#login-modal input[type="password"]:focus {
+  border: 1.5px solid #d72638;
+  outline: none;
+  background: #fff;
+}
+
+#login-modal button[type="submit"] {
+  background: #d72638;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.7rem 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-top: 0.5rem;
+}
+
+#login-modal button[type="submit"]:hover {
+  background: #b81d2c;
+}
+
+#close-login {
+  position: absolute;
+  top: 10px; right: 10px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #d72638;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+#close-login:hover {
+  color: #b81d2c;
+}

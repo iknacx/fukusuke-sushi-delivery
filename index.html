@@ -5,6 +5,7 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Fukusuke Sushi Delivery</title>
+    <link rel="stylesheet" href="/src/login.css" />
   </head>
   <body>
     
@@ -68,9 +69,9 @@
     </footer>
     <script type="module" src="/src/main.js"></script>
     <!-- Modal de inicio de sesión -->
-    <div id="login-modal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.5); justify-content:center; align-items:center; z-index:1000;">
-      <div style="background:#fff; padding:2rem; border-radius:8px; min-width:300px; position:relative;">
-        <button id="close-login" style="position:absolute; top:8px; right:8px; background:none; border:none; font-size:1.2rem; cursor:pointer;">&times;</button>
+    <div id="login-modal">
+      <div class="login-modal-content">
+        <button id="close-login">&times;</button>
         <h2>Iniciar Sesión</h2>
         <form>
           <div>
