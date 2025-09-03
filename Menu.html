@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Menú - Fukusuke Sushi Delivery</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f8f8f8;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background: #222;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        nav {
+            background: #e3e3e3;
+            padding: 10px 0;
+            text-align: center;
+        }
+        nav a {
+            color: #222;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+        .menu-section {
+            max-width: 800px;
+            margin: 30px auto;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            padding: 30px;
+        }
+        h2 {
+            color: #d32f2f;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 8px;
+        }
+        .productos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        .producto-card {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+        }
+        .producto-card img {
+            max-width: 100%;
+            border-radius: 4px;
+        }
+        .producto-card h3 {
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+        .producto-card p {
+            color: #666;
+            font-size: 0.9em;
+        }
+        .precio {
+            display: block;
+            margin: 10px 0;
+            font-size: 1.1em;
+            color: #388e3c;
+            font-weight: bold;
+        }
+        .producto-card button {
+            background: #d32f2f;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .producto-card button:hover {
+            background: #c62828;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Fukusuke Sushi Delivery</h1>
+    </header>
+    <nav>
+        <a href="index.html">Inicio</a>
+        <a href="Menu.html">Menú</a>
+        <a href="#">Pedidos</a>
+        <a href="contacto.html">Contacto</a>
+    </nav>
+    <div class="menu-section">
+        <h2>Menú</h2>
+        <div class="productos-grid">
+            <div class="producto-card">
+                <img src="https://www.demoslavueltaaldia.com/sites/default/files/20295403_0.jpg" alt="Sushi Clásico">
+                <h3>Sushi Roll Clásico</h3>
+                <p>Rollos tradicionales con salmón y aguacate.</p>
+                <span class="precio">$11.990</span>
+                <button>Agregar</button>
+            </div>
+            <div class="producto-card">
+                <img src="https://www.pequerecetas.com/wp-content/uploads/2022/08/nigiri-sushi.jpg" alt="Nigiri de Salmón">
+                <h3>Nigiri de Salmón</h3>
+                <p>Bocado de arroz con lámina de salmón fresco.</p>
+                <span class="precio">$8.990</span>
+                <button>Agregar</button>
+            </div>
+            <div class="producto-card">
+                <img src="https://www.buenprovecho.hn/wp-content/uploads/2023/03/Camarones_tempura_y_salsa_de_tamarindo.png" alt="Tempura de Camarón">
+                <h3>Tempura de Camarón</h3>
+                <p>Camarón empanizado y frito, acompañado de salsa especial.</p>
+                <span class="precio">$8.990</span>
+                <button>Agregar</button>
+            </div>
+            <div class="producto-card">
+                <img src="https://static.bainet.es/clip/d1e403ae-0a0c-4119-b6cb-cd0ce86a6ea5_source-aspect-ratio_1600w_0.jpg" alt="Gyozas">
+                <h3>Gyozas</h3>
+                <p>Empanadillas japonesas rellenas de cerdo y verduras.</p>
+                <span class="precio">$6.990</span>
+                <button>Agregar</button>
+            </div>
+            <div class="producto-card">
+                <img src="https://tofuu.getjusto.com/orioneat-local/resized2/A9QJD3LbhQXgNzb6q-2400-x.webp" alt="Sashimi Mixto">
+                <h3>Sashimi Mixto</h3>
+                <p>Selección de pescado fresco (atún, salmón y robalo).</p>
+                <span class="precio">$14.990</span>
+                <button>Agregar</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
