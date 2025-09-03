@@ -115,6 +115,18 @@
           this.style.display = 'none';
         }
       };
+
+      // Validación de contraseña
+      document.querySelector('#login-modal form').onsubmit = function(e) {
+        const password = document.getElementById('password').value;
+        // Al menos 6 caracteres, una mayúscula y un símbolo
+        const regex = /^(?=.*[A-Z])(?=.*[\W_]).{6,}$/;
+        if (!regex.test(password)) {
+          alert('La contraseña debe tener al menos 6 caracteres, una mayúscula y un símbolo.');
+          e.preventDefault();
+          return false;
+        }
+      };
     </script>
     <script>
       // Carrito de compra básico
