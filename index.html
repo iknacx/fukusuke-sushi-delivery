@@ -7,19 +7,21 @@
     <title>Fukusuke Sushi Delivery</title>
   </head>
   <body>
+    
     <header class="header">
-      <img src="https://img.freepik.com/vector-premium/logo-sushi-japones_25327-119.jpg" alt="Logo Fukusuke" class="logo"/>
+      <img src="https://tse2.mm.bing.net/th/id/OIP.MsG43BQ-GPPHFNDSV7a84QHaHa?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Logo Fukusuke" class="logo"/>
       <h1>Fukusuke Sushi Delivery</h1>
       <nav>
         <a href="#">Inicio</a>
         <a href="#">Menú</a>
         <a href="#">Contacto</a>
+        <a href="#" id="login-link">Inicio de sesión</a>
       </nav>
     </header>
     <div class="banner-foto">
       <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80" alt="Banner Sushi Delivery">
       <div class="banner-texto">
-        <span>¡Envío gratis en pedidos mayores a $500! | Promoción: 2x1 en Sushi Clásico todos los miércoles</span>
+        <span>¡Envío gratis en pedidos mayores a $50.000! | Promoción: 2x1 en Sushi Clásico todos los miércoles</span>
       </div>
     </div>
     <main>
@@ -34,11 +36,11 @@
             <img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=400&q=80" alt="Sushi Clásico">
             <h3>Sushi Clásico</h3>
             <p>Rollos tradicionales con salmón y aguacate.</p>
-            <span class="precio">$120</span>
+            <span class="precio">$8.000</span>
             <button>Agregar</button>
           </div>
           <div class="producto-card">
-            <img src="https://images.unsplash.com/photo-1502741338009-cac2772e18bc?auto=format&fit=crop&w=400&q=80" alt="Sushi Tempura">
+            <img src="https://tse3.mm.bing.net/th/id/OIP.xLNreHUHwsOpFvNuQrT81QHaE7?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Sushi Tempura">
             <h3>Sushi Tempura</h3>
             <p>Rollos crujientes rellenos de camarón tempura.</p>
             <span class="precio">$140</span>
@@ -65,5 +67,40 @@
       <p>&copy; 2025 Fukusuke Sushi Delivery. Todos los derechos reservados.</p>
     </footer>
     <script type="module" src="/src/main.js"></script>
+    <!-- Modal de inicio de sesión -->
+    <div id="login-modal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.5); justify-content:center; align-items:center; z-index:1000;">
+      <div style="background:#fff; padding:2rem; border-radius:8px; min-width:300px; position:relative;">
+        <button id="close-login" style="position:absolute; top:8px; right:8px; background:none; border:none; font-size:1.2rem; cursor:pointer;">&times;</button>
+        <h2>Iniciar Sesión</h2>
+        <form>
+          <div>
+            <label for="email">Correo electrónico:</label>
+            <input type="email" id="email" name="email" required />
+          </div>
+          <div>
+            <label for="password">Contraseña:</label>
+            <input type="password" id="password" name="password" required />
+          </div>
+          <button type="submit">Entrar</button>
+        </form>
+      </div>
+    </div>
+    <script>
+      // Mostrar el modal al hacer clic en "Inicio de sesión"
+      document.getElementById('login-link').onclick = function(e) {
+        e.preventDefault();
+        document.getElementById('login-modal').style.display = 'flex';
+      };
+      // Cerrar el modal al hacer clic en la X
+      document.getElementById('close-login').onclick = function() {
+        document.getElementById('login-modal').style.display = 'none';
+      };
+      // Cerrar el modal al hacer clic fuera del formulario
+      document.getElementById('login-modal').onclick = function(e) {
+        if (e.target === this) {
+          this.style.display = 'none';
+        }
+      };
+    </script>
   </body>
 </html>
