@@ -14,6 +14,11 @@
         <a href="#">Inicio</a>
         <a href="#">Menú</a>
         <a href="#">Contacto</a>
+        <!-- Carrito de compra -->
+        <span id="carrito" style="position:relative; margin-left:20px; cursor:pointer;" title="Carrito de compra">
+          🛒
+          <span id="contador-carrito" style="position:absolute; top:-8px; right:-12px; background:red; color:white; border-radius:50%; padding:2px 6px; font-size:12px;">0</span>
+        </span>
       </nav>
     </header>
     <div class="banner-foto">
@@ -64,6 +69,63 @@
     <footer class="footer">
       <p>&copy; 2025 Fukusuke Sushi Delivery. Todos los derechos reservados.</p>
     </footer>
+    <!-- Popup del carrito -->
+    <div id="popup-carrito" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:white; border:2px solid #333; border-radius:8px; box-shadow:0 2px 10px rgba(0,0,0,0.2); padding:24px; z-index:1000; min-width:300px;">
+      <h2>Carrito de compra</h2>
+      <ul id="lista-carrito" style="padding-left:18px;"></ul>
+      <p id="total-carrito" style="font-weight:bold;"></p>
+      <button onclick="cerrarPopupCarrito()" style="margin-top:12px;">Cerrar</button>
+    </div>
+    <div id="popup-fondo" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.3); z-index:999;" onclick="cerrarPopupCarrito()"></div>
     <script type="module" src="/src/main.js"></script>
+    <script>
+      // Carrito de compra básico
+      let carrito = [];
+
+      // Lista de productos con precios
+      const productos = [
+        { nombre: "Sushi Clásico", precio: 120 },
+        { nombre: "Sushi Tempura", precio: 140 },
+        { nombre: "Sashimi Variado", precio: 180 },
+        { nombre: "Combo Familiar", precio: 450 }
+      ];
+
+      document.addEventListener('DOMContentLoaded', () => {
+        const botonesAgregar = document.querySelectorAll('.producto-card button');
+        botonesAgregar.forEach((btn, idx) => {
+          btn.addEventListener('click', () => {
+            carrito.push(idx); // Guarda el índice del producto
+            document.getElementById('contador-carrito').textContent = carrito.length;
+          });
+        });
+
+        document.getElementById('carrito').addEventListener('click', mostrarPopupCarrito);
+      });
+
+      function mostrarPopupCarrito() {
+        const lista = document.getElementById('lista-carrito');
+        lista.innerHTML = '';
+        let total = 0;
+        if (carrito.length === 0) {
+          lista.innerHTML = '<li>El carrito está vacío.</li>';
+        } else {
+          carrito.forEach(idx => {
+            const prod = productos[idx];
+            const item = document.createElement('li');
+            item.textContent = `${prod.nombre} - $${prod.precio}`;
+            lista.appendChild(item);
+            total += prod.precio;
+          });
+        }
+        document.getElementById('total-carrito').textContent = 'Total: $' + total;
+        document.getElementById('popup-carrito').style.display = 'block';
+        document.getElementById('popup-fondo').style.display = 'block';
+      }
+
+      function cerrarPopupCarrito() {
+        document.getElementById('popup-carrito').style.display = 'none';
+        document.getElementById('popup-fondo').style.display = 'none';
+      }
+    </script>
   </body>
 </html>
