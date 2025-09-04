@@ -7,6 +7,19 @@ import productos from './productos.json'
 let carrito = [];
 let productosData = productos;
 
+// Función para actualizar contadores del carrito
+function actualizarContadorCarrito() {
+	const contadorDesktop = document.getElementById('contador-carrito');
+	const contadorMobile = document.getElementById('contador-carrito-mobile');
+	
+	if (contadorDesktop) {
+		contadorDesktop.textContent = carrito.length;
+	}
+	if (contadorMobile) {
+		contadorMobile.textContent = carrito.length;
+	}
+}
+
 // Función para mostrar el modal de login
 function mostrarLogin() {
 	const loginModal = document.getElementById('login-modal');
@@ -89,15 +102,27 @@ document.addEventListener('DOMContentLoaded', () => {
 			const producto = productosData.find(p => p.id === productoId);
 			if (producto) {
 				carrito.push(producto);
-				document.getElementById('contador-carrito').textContent = carrito.length;
+				actualizarContadorCarrito();
 			}
 		}
 	});
 
-	document.getElementById('carrito').addEventListener('click', mostrarPopupCarrito);
+	// Eventos para los carritos (desktop y móvil)
+	const carritoDesktop = document.getElementById('carrito');
+	const carritoMobile = document.getElementById('carrito-mobile');
+	
+	if (carritoDesktop) {
+		carritoDesktop.addEventListener('click', mostrarPopupCarrito);
+	}
+	if (carritoMobile) {
+		carritoMobile.addEventListener('click', mostrarPopupCarrito);
+	}
 });
 
 function mostrarPopupCarrito() {
+	// Cerrar menú móvil si está abierto
+	closeMobileMenu();
+	
 	const lista = document.getElementById('lista-carrito');
 	lista.innerHTML = '';
 	let total = 0;
@@ -129,7 +154,7 @@ function mostrarPopupCarrito() {
 		btn.onclick = function() {
 			const index = parseInt(this.getAttribute('data-index'));
 			carrito.splice(index, 1);
-			document.getElementById('contador-carrito').textContent = carrito.length;
+			actualizarContadorCarrito();
 			mostrarPopupCarrito();
 		};
 	});
@@ -140,7 +165,7 @@ function mostrarPopupCarrito() {
 		// Aquí podrías redirigir a una página de pago real
 		cerrarPopupCarrito();
 		carrito = [];
-		document.getElementById('contador-carrito').textContent = carrito.length;
+		actualizarContadorCarrito();
 	};
 }
 
@@ -149,3 +174,45 @@ function cerrarPopupCarrito() {
 	document.getElementById('popup-fondo').style.display = 'none';
 }
 window.cerrarPopupCarrito = cerrarPopupCarrito;
+
+// Funciones para el menú móvil
+function toggleMobileMenu() {
+	const mobileMenu = document.getElementById('mobile-menu');
+	const overlay = document.querySelector('.mobile-menu-overlay');
+	const toggle = document.querySelector('.menu-toggle');
+	
+	if (!mobileMenu || !overlay || !toggle) return;
+	
+	const isActive = mobileMenu.classList.contains('active');
+	
+	if (isActive) {
+		// Cerrar menú
+		mobileMenu.classList.remove('active');
+		overlay.classList.remove('active');
+		toggle.classList.remove('active');
+		document.body.style.overflow = '';
+	} else {
+		// Abrir menú
+		mobileMenu.classList.add('active');
+		overlay.classList.add('active');
+		toggle.classList.add('active');
+		document.body.style.overflow = 'hidden';
+	}
+}
+
+function closeMobileMenu() {
+	const mobileMenu = document.getElementById('mobile-menu');
+	const overlay = document.querySelector('.mobile-menu-overlay');
+	const toggle = document.querySelector('.menu-toggle');
+	
+	if (!mobileMenu || !overlay || !toggle) return;
+	
+	mobileMenu.classList.remove('active');
+	overlay.classList.remove('active');
+	toggle.classList.remove('active');
+	document.body.style.overflow = '';
+}
+
+// Hacer funciones accesibles globalmente
+window.toggleMobileMenu = toggleMobileMenu;
+window.closeMobileMenu = closeMobileMenu;

@@ -24,7 +24,31 @@
           <span id="contador-carrito" style="position:absolute; top:-8px; right:-12px; background:red; color:white; border-radius:50%; padding:2px 6px; font-size:12px;">0</span>
         </span>
       </nav>
+      
+      <!-- Botón hamburguesa para móvil -->
+      <button class="menu-toggle" onclick="toggleMobileMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </header>
+    
+    <!-- Menú móvil overlay -->
+    <div class="mobile-menu-overlay" onclick="closeMobileMenu()"></div>
+    
+    <!-- Menú móvil -->
+    <div class="mobile-menu" id="mobile-menu">
+      <nav>
+        <a href="index.html" onclick="closeMobileMenu()">Inicio</a>
+        <a href="menu.html" onclick="closeMobileMenu()">Menú</a>
+        <a href="contacto.html" onclick="closeMobileMenu()">Contacto</a>
+        <a href="#" onclick="mostrarLogin(); closeMobileMenu()">Inicio de sesión</a>
+      </nav>
+      <div id="carrito-mobile" class="mobile-menu-carrito" onclick="mostrarPopupCarrito(); closeMobileMenu()" style="cursor:pointer;" title="Carrito de compra">
+        <span>🛒 Carrito</span>
+        <span id="contador-carrito-mobile" style="background:#d7263d; color:white; border-radius:50%; padding:4px 8px; font-size:12px; font-weight:bold;">0</span>
+      </div>
+    </div>
     <div class="banner-foto">
       <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80" alt="Banner Sushi Delivery">
       <div class="banner-texto">
@@ -47,7 +71,7 @@
       <p>&copy; 2025 Fukusuke Sushi Delivery. Todos los derechos reservados.</p>
     </footer>
     <!-- Popup del carrito -->
-    <div id="popup-carrito" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:white; border:2px solid #333; border-radius:8px; box-shadow:0 2px 10px rgba(0,0,0,0.2); padding:24px; z-index:1000; min-width:300px;">
+    <div id="popup-carrito" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:white; border:2px solid #333; border-radius:8px; box-shadow:0 2px 10px rgba(0,0,0,0.2); padding:24px; z-index:1002; min-width:300px;">
       <h2>Carrito de compra</h2>
       <ul id="lista-carrito" style="padding-left:18px;"></ul>
       <p id="total-carrito" style="font-weight:bold;"></p>
@@ -56,7 +80,7 @@
       </button>
       <button onclick="cerrarPopupCarrito()" style="margin-top:12px;">Cerrar</button>
     </div>
-    <div id="popup-fondo" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.3); z-index:999;" onclick="cerrarPopupCarrito()"></div>
+    <div id="popup-fondo" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.3); z-index:1001;" onclick="cerrarPopupCarrito()"></div>
     <script type="module" src="/src/main.js"></script>
     <!-- Modal de inicio de sesión -->
     <div id="login-modal" onclick="if(event.target === this) cerrarLogin()">
