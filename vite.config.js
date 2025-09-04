@@ -8,6 +8,13 @@ export default defineConfig({
     open: false
   },
   build: {
-    outDir: 'dist'
+    outDir: 'dist',
+    rollupOptions: {
+      input: {
+        main: 'index.html',
+        menu: 'src/menu/index.html',
+        contacto: 'src/contacto/index.html',
+      }
+    }
   }
 });
