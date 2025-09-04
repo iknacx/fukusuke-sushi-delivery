@@ -1,5 +1,4 @@
 import './global.css'
-import './global.css'
 import './styles.css'
 import productos from './productos.json'
 
@@ -80,14 +79,6 @@ function renderizarProductosDestacados() {
 		grid.appendChild(card);
 	});
 }
-
-// Lista de productos con precios (se eliminará - ahora viene del JSON)
-const productosLegacy = [
-	{ nombre: "Sushi Clásico", precio: 120 },
-	{ nombre: "Sushi Tempura", precio: 140 },
-	{ nombre: "Sashimi Variado", precio: 180 },
-	{ nombre: "Combo Familiar", precio: 450 }
-];
 
 document.addEventListener('DOMContentLoaded', () => {
 	// Renderizar productos destacados si estamos en la página principal
