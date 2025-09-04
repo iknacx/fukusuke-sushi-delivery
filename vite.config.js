@@ -2,7 +2,6 @@ import { defineConfig } from 'vite';
 
 export default defineConfig({
   root: '.',
-  base: '/fukusuke-sushi-delivery/', // base para GitHub Pages
   server: {
     port: 5173,
     open: false
@@ -12,8 +11,8 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: 'index.html',
-        menu: 'src/menu/index.html',
-        contacto: 'src/contacto/index.html',
+        menu: 'menu.html',
+        contacto: 'contacto.html',
       }
     }
   }

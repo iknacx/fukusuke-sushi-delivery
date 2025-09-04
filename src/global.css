@@ -17,6 +17,7 @@ body {
   min-width: 320px;
   min-height: 100vh;
   background: linear-gradient(120deg, #f7f7f7 60%, #ffe5e9 100%);
+  font-family: 'Segoe UI', 'Avenir', Helvetica, Arial, sans-serif;
 }
 
 a {
@@ -97,6 +98,45 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 3px auto #d7263d;
+}
+
+/* Estilos globales del header y navegación */
+.header {
+  background: #fff;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid #d7263d;
+  font-family: 'Segoe UI', 'Avenir', Helvetica, Arial, sans-serif;
+}
+.header .logo {
+  height: 60px;
+  margin-right: 1rem;
+  border-radius: 50%;
+  border: 2px solid #d7263d;
+  padding: 0;
+  background: none;
+  box-shadow: none;
+}
+.header h1 {
+  color: #d7263d;
+  font-size: 2rem;
+  margin: 0 1rem 0 0;
+  flex: 1;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-weight: 700;
+}
+.header nav a {
+  color: #222;
+  text-decoration: none;
+  margin: 0 1rem;
+  font-weight: bold;
+  transition: color 0.2s;
+  font-family: 'Segoe UI', 'Avenir', Helvetica, Arial, sans-serif;
+}
+.header nav a:hover {
+  color: #d7263d;
 }
 
 @media (max-width: 700px) {
