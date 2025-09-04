@@ -2,6 +2,7 @@ import { defineConfig } from 'vite';
 
 export default defineConfig({
   root: '.',
+  base: '/fukusuke-sushi-delivery/',
   server: {
     port: 5173,
     open: false
