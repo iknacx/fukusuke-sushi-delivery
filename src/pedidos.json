@@ -1,0 +1,71 @@
+[
+  {
+    "id": 1,
+    "cliente": "Juan Pérez",
+    "email": "juan.perez@email.com",
+    "telefono": "+56912345678",
+    "direccion": "Av. Providencia 1234, Santiago",
+    "fecha": "2025-09-08T15:30:00",
+    "estado": "pendiente",
+    "items": [
+      {
+        "id": 1,
+        "nombre": "Sushi Clásico",
+        "cantidad": 2,
+        "precio": 11990
+      },
+      {
+        "id": 2,
+        "nombre": "Sushi Tempura",
+        "cantidad": 1,
+        "precio": 6990
+      }
+    ],
+    "total": 30970,
+    "notas": "Sin wasabi por favor"
+  },
+  {
+    "id": 2,
+    "cliente": "María González",
+    "email": "maria.g@email.com",
+    "telefono": "+56987654321",
+    "direccion": "Las Condes 5678, Santiago",
+    "fecha": "2025-09-08T16:00:00",
+    "estado": "en_proceso",
+    "items": [
+      {
+        "id": 3,
+        "nombre": "Roll California",
+        "cantidad": 3,
+        "precio": 8990
+      }
+    ],
+    "total": 26970,
+    "notas": "Extra jengibre"
+  },
+  {
+    "id": 3,
+    "cliente": "Carlos Rodríguez",
+    "email": "carlos.r@email.com",
+    "telefono": "+56923456789",
+    "direccion": "Ñuñoa 910, Santiago",
+    "fecha": "2025-09-08T14:45:00",
+    "estado": "entregado",
+    "items": [
+      {
+        "id": 1,
+        "nombre": "Sushi Clásico",
+        "cantidad": 1,
+        "precio": 11990
+      },
+      {
+        "id": 4,
+        "nombre": "Roll Tempura Especial",
+        "cantidad": 2,
+        "precio": 9990
+      }
+    ],
+    "total": 31970,
+    "notas": ""
+  }
+]
