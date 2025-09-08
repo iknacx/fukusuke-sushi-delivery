@@ -49,6 +49,7 @@
             <div class="admin-sidebar">
                 <button class="tab-button active" data-tab="productos">Productos</button>
                 <button class="tab-button" data-tab="pedidos">Pedidos</button>
+                <button class="tab-button" data-tab="usuarios">Usuarios</button>
                 <button class="tab-button" data-tab="menu">Menú</button>
             </div>
 
@@ -80,6 +81,29 @@
                     </div>
                     <div class="pedidos-lista">
                         <p>No hay pedidos pendientes</p>
+                    </div>
+                </div>
+
+                <div id="usuarios" class="tab-content">
+                    <h2>Gestión de Usuarios</h2>
+                    <div class="usuarios-header">
+                        <button id="agregarUsuario" class="btn-primary">Agregar Usuario</button>
+                        <div class="filtros-usuarios">
+                            <select id="filtroTipoUsuario" onchange="filtrarUsuarios()">
+                                <option value="todos">Todos los tipos</option>
+                                <option value="admin">Administradores</option>
+                                <option value="moderador">Moderadores</option>
+                                <option value="cliente">Clientes</option>
+                            </select>
+                            <select id="filtroEstadoUsuario" onchange="filtrarUsuarios()">
+                                <option value="todos">Todos los estados</option>
+                                <option value="activo">Activos</option>
+                                <option value="inactivo">Inactivos</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="usuarios-lista">
+                        <p>Cargando usuarios...</p>
                     </div>
                 </div>
 
@@ -122,6 +146,49 @@
                     </label>
                 </div>
                 <button type="submit" class="btn-primary">Guardar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal para agregar/editar usuarios -->
+    <div id="usuarioModal" class="modal">
+        <div class="modal-content">
+            <span class="close-usuario">&times;</span>
+            <h2 id="usuarioModalTitle">Agregar Usuario</h2>
+            <form id="usuarioForm">
+                <div class="form-group">
+                    <label for="nombreUsuario">Nombre completo:</label>
+                    <input type="text" id="nombreUsuario" required>
+                </div>
+                <div class="form-group">
+                    <label for="emailUsuario">Email:</label>
+                    <input type="email" id="emailUsuario" required>
+                </div>
+                <div class="form-group">
+                    <label for="telefonoUsuario">Teléfono:</label>
+                    <input type="tel" id="telefonoUsuario" required>
+                </div>
+                <div class="form-group">
+                    <label for="direccionUsuario">Dirección:</label>
+                    <textarea id="direccionUsuario" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="tipoUsuario">Tipo de usuario:</label>
+                    <select id="tipoUsuario" required>
+                        <option value="">Seleccionar tipo</option>
+                        <option value="cliente">Cliente</option>
+                        <option value="moderador">Moderador</option>
+                        <option value="admin">Administrador</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="estadoUsuario">Estado:</label>
+                    <select id="estadoUsuario" required>
+                        <option value="activo">Activo</option>
+                        <option value="inactivo">Inactivo</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-primary">Guardar Usuario</button>
             </form>
         </div>
     </div>
