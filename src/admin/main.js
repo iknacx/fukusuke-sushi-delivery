@@ -6,8 +6,8 @@ let pedidos = [];
 async function cargarDatos() {
     try {
         const [productosResponse, pedidosResponse] = await Promise.all([
-            fetch('/src/productos.json'),
-            fetch('/src/pedidos.json')
+            fetch('/fukusuke-sushi-delivery/productos.json'),
+            fetch('/fukusuke-sushi-delivery/pedidos.json')
         ]);
         
         productos = await productosResponse.json();

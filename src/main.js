@@ -1,10 +1,19 @@
 import './global.css'
 import './styles.css'
-import productos from './productos.json'
 
 // Variables globales
 let carrito = [];
-let productosData = productos;
+let productosData = [];
+
+// Cargar productos desde el archivo JSON
+async function cargarProductos() {
+    try {
+        const response = await fetch('/fukusuke-sushi-delivery/productos.json');
+        productosData = await response.json();
+    } catch (error) {
+        console.error('Error al cargar productos:', error);
+    }
+}
 
 // Función para actualizar contadores del carrito
 function actualizarContadorCarrito() {
@@ -58,7 +67,8 @@ window.cerrarLogin = cerrarLogin;
 window.manejarSubmitLogin = manejarSubmitLogin;
 
 // Función para renderizar productos destacados en la página principal
-function renderizarProductosDestacados() {
+async function renderizarProductosDestacados() {
+	await cargarProductos();
 	const productosDestacados = productosData.filter(producto => producto.destacado);
 	const grid = document.querySelector('.productos-grid');
 	
