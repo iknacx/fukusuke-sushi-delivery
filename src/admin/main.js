@@ -257,6 +257,7 @@ window.editarPedido = (id) => {
 window.eliminarPedido = (id) => {
     if (confirm('¿Estás seguro de que deseas eliminar este pedido?')) {
         pedidos = pedidos.filter(p => p.id !== id);
+        mostrarPedidos();
     }
 };
 
