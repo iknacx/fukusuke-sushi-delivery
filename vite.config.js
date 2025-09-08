@@ -14,6 +14,7 @@ export default defineConfig({
         main: 'index.html',
         menu: 'menu.html',
         contacto: 'contacto.html',
+        admin: 'admin.html'
       }
     }
   }
