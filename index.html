@@ -5,26 +5,54 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Fukusuke Sushi Delivery</title>
+    <link rel="stylesheet" href="/src/global.css" />
+    <link rel="stylesheet" href="/src/styles.css" />
   </head>
   <body>
+    
     <header class="header">
-      <img src="https://img.freepik.com/vector-premium/logo-sushi-japones_25327-119.jpg" alt="Logo Fukusuke" class="logo"/>
+      <img src="https://tse2.mm.bing.net/th/id/OIP.MsG43BQ-GPPHFNDSV7a84QHaHa?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Logo Fukusuke" class="logo"/>
       <h1>Fukusuke Sushi Delivery</h1>
       <nav>
-        <a href="#">Inicio</a>
-        <a href="#">Menú</a>
-        <a href="#">Contacto</a>
+        <a href="index.html">Inicio</a>
+        <a href="menu.html">Menú</a>
+        <a href="contacto.html">Contacto</a>
+        <a href="#" onclick="mostrarLogin()">Inicio de sesión</a>
         <!-- Carrito de compra -->
         <span id="carrito" style="position:relative; margin-left:20px; cursor:pointer;" title="Carrito de compra">
           🛒
           <span id="contador-carrito" style="position:absolute; top:-8px; right:-12px; background:red; color:white; border-radius:50%; padding:2px 6px; font-size:12px;">0</span>
         </span>
       </nav>
+      
+      <!-- Botón hamburguesa para móvil -->
+      <button class="menu-toggle" onclick="toggleMobileMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </header>
+    
+    <!-- Menú móvil overlay -->
+    <div class="mobile-menu-overlay" onclick="closeMobileMenu()"></div>
+    
+    <!-- Menú móvil -->
+    <div class="mobile-menu" id="mobile-menu">
+      <nav>
+        <a href="index.html" onclick="closeMobileMenu()">Inicio</a>
+        <a href="menu.html" onclick="closeMobileMenu()">Menú</a>
+        <a href="contacto.html" onclick="closeMobileMenu()">Contacto</a>
+        <a href="#" onclick="mostrarLogin(); closeMobileMenu()">Inicio de sesión</a>
+      </nav>
+      <div id="carrito-mobile" class="mobile-menu-carrito" onclick="mostrarPopupCarrito(); closeMobileMenu()" style="cursor:pointer;" title="Carrito de compra">
+        <span>🛒 Carrito</span>
+        <span id="contador-carrito-mobile" style="background:#d7263d; color:white; border-radius:50%; padding:4px 8px; font-size:12px; font-weight:bold;">0</span>
+      </div>
+    </div>
     <div class="banner-foto">
-      <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80" alt="Banner Sushi Delivery">
+      <img src="https://static.bainet.es/clip/d92f81c5-30ae-4cf3-8c32-d5e0c54fc8a8_source-aspect-ratio_1600w_0.jpg" alt="Banner Sushi Delivery">
       <div class="banner-texto">
-        <span>¡Envío gratis en pedidos mayores a $500! | Promoción: 2x1 en Sushi Clásico todos los miércoles</span>
+        <span>¡Envío gratis en pedidos mayores a $25.000! | Promoción: 2x1 en Sushi Clásico todos los miércoles</span>
       </div>
     </div>
     <main>
@@ -35,34 +63,7 @@
       <section class="productos">
         <h2>Nuestros Productos</h2>
         <div class="productos-grid">
-          <div class="producto-card">
-            <img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=400&q=80" alt="Sushi Clásico">
-            <h3>Sushi Clásico</h3>
-            <p>Rollos tradicionales con salmón y aguacate.</p>
-            <span class="precio">$120</span>
-            <button>Agregar</button>
-          </div>
-          <div class="producto-card">
-            <img src="https://images.unsplash.com/photo-1502741338009-cac2772e18bc?auto=format&fit=crop&w=400&q=80" alt="Sushi Tempura">
-            <h3>Sushi Tempura</h3>
-            <p>Rollos crujientes rellenos de camarón tempura.</p>
-            <span class="precio">$140</span>
-            <button>Agregar</button>
-          </div>
-          <div class="producto-card">
-            <img src="https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=400&q=80" alt="Sashimi Variado">
-            <h3>Sashimi Variado</h3>
-            <p>Selección de pescado fresco cortado en láminas.</p>
-            <span class="precio">$180</span>
-            <button>Agregar</button>
-          </div>
-          <div class="producto-card">
-            <img src="https://images.unsplash.com/photo-1528715471579-d1bd0e1df0c4?auto=format&fit=crop&w=400&q=80" alt="Combo Familiar">
-            <h3>Combo Familiar</h3>
-            <p>Ideal para compartir, incluye 40 piezas surtidas.</p>
-            <span class="precio">$450</span>
-            <button>Agregar</button>
-          </div>
+          <!-- Los productos destacados se cargarán dinámicamente desde el JSON -->
         </div>
       </section>
     </main>
@@ -70,62 +71,34 @@
       <p>&copy; 2025 Fukusuke Sushi Delivery. Todos los derechos reservados.</p>
     </footer>
     <!-- Popup del carrito -->
-    <div id="popup-carrito" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:white; border:2px solid #333; border-radius:8px; box-shadow:0 2px 10px rgba(0,0,0,0.2); padding:24px; z-index:1000; min-width:300px;">
+    <div id="popup-carrito" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:white; border:2px solid #333; border-radius:8px; box-shadow:0 2px 10px rgba(0,0,0,0.2); padding:24px; z-index:1002; min-width:300px;">
       <h2>Carrito de compra</h2>
       <ul id="lista-carrito" style="padding-left:18px;"></ul>
       <p id="total-carrito" style="font-weight:bold;"></p>
+      <button id="btn-pagar" style="background:#1e88e5; color:#fff; border:none; border-radius:6px; padding:8px 18px; font-size:1rem; font-weight:600; margin-top:8px; cursor:pointer; display:none;">
+        Continuar al pago
+      </button>
       <button onclick="cerrarPopupCarrito()" style="margin-top:12px;">Cerrar</button>
     </div>
-    <div id="popup-fondo" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.3); z-index:999;" onclick="cerrarPopupCarrito()"></div>
+    <div id="popup-fondo" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.3); z-index:1001;" onclick="cerrarPopupCarrito()"></div>
     <script type="module" src="/src/main.js"></script>
-    <script>
-      // Carrito de compra básico
-      let carrito = [];
-
-      // Lista de productos con precios
-      const productos = [
-        { nombre: "Sushi Clásico", precio: 120 },
-        { nombre: "Sushi Tempura", precio: 140 },
-        { nombre: "Sashimi Variado", precio: 180 },
-        { nombre: "Combo Familiar", precio: 450 }
-      ];
-
-      document.addEventListener('DOMContentLoaded', () => {
-        const botonesAgregar = document.querySelectorAll('.producto-card button');
-        botonesAgregar.forEach((btn, idx) => {
-          btn.addEventListener('click', () => {
-            carrito.push(idx); // Guarda el índice del producto
-            document.getElementById('contador-carrito').textContent = carrito.length;
-          });
-        });
-
-        document.getElementById('carrito').addEventListener('click', mostrarPopupCarrito);
-      });
-
-      function mostrarPopupCarrito() {
-        const lista = document.getElementById('lista-carrito');
-        lista.innerHTML = '';
-        let total = 0;
-        if (carrito.length === 0) {
-          lista.innerHTML = '<li>El carrito está vacío.</li>';
-        } else {
-          carrito.forEach(idx => {
-            const prod = productos[idx];
-            const item = document.createElement('li');
-            item.textContent = `${prod.nombre} - $${prod.precio}`;
-            lista.appendChild(item);
-            total += prod.precio;
-          });
-        }
-        document.getElementById('total-carrito').textContent = 'Total: $' + total;
-        document.getElementById('popup-carrito').style.display = 'block';
-        document.getElementById('popup-fondo').style.display = 'block';
-      }
-
-      function cerrarPopupCarrito() {
-        document.getElementById('popup-carrito').style.display = 'none';
-        document.getElementById('popup-fondo').style.display = 'none';
-      }
-    </script>
+    <!-- Modal de inicio de sesión -->
+    <div id="login-modal" onclick="if(event.target === this) cerrarLogin()">
+      <div class="login-modal-content">
+        <button id="close-login" onclick="cerrarLogin()">&times;</button>
+        <h2>Iniciar Sesión</h2>
+        <form onsubmit="return manejarSubmitLogin(event)">
+          <div>
+            <label for="email">Correo electrónico:</label>
+            <input type="email" id="email" name="email" required />
+          </div>
+          <div>
+            <label for="password">Contraseña:</label>
+            <input type="password" id="password" name="password" required />
+          </div>
+          <button type="submit">Entrar</button>
+        </form>
+      </div>
+    </div>
   </body>
 </html>

@@ -1,0 +1,66 @@
+[
+  {
+    "id": 1,
+    "nombre": "Sushi Clásico",
+    "descripcion": "Rollos tradicionales con salmón y aguacate.",
+    "precio": 11990,
+    "imagen": "https://www.demoslavueltaaldia.com/sites/default/files/20295403_0.jpg",
+    "destacado": true
+  },
+  {
+    "id": 2,
+    "nombre": "Sushi Tempura",
+    "descripcion": "Rollos crujientes rellenos de camarón tempura.",
+    "precio": 6990,
+    "imagen": "https://comedera.com/wp-content/uploads/sites/9/2023/08/tempura-roll.jpg?w=500&h=500&crop=1",
+    "destacado": true
+  },
+  {
+    "id": 3,
+    "nombre": "Sashimi Variado",
+    "descripcion": "Selección de pescado fresco cortado en láminas.",
+    "precio": 13990,
+    "imagen": "https://media-cdn.tripadvisor.com/media/photo-s/10/96/79/4e/sashimi-variado.jpg",
+    "destacado": true
+  },
+  {
+    "id": 4,
+    "nombre": "Combo Familiar",
+    "descripcion": "Ideal para compartir, incluye 40 piezas surtidas.",
+    "precio": 16990,
+    "imagen": "https://media-cdn.tripadvisor.com/media/photo-s/17/87/52/70/combo-para-la-familia.jpg",
+    "destacado": true
+  },
+  {
+    "id": 5,
+    "nombre": "Nigiri de Salmón",
+    "descripcion": "Bocado de arroz con lámina de salmón fresco.",
+    "precio": 8990,
+    "imagen": "https://www.pequerecetas.com/wp-content/uploads/2022/08/nigiri-sushi.jpg",
+    "destacado": false
+  },
+  {
+    "id": 6,
+    "nombre": "Gyozas",
+    "descripcion": "Empanadillas japonesas rellenas de cerdo y verduras.",
+    "precio": 6990,
+    "imagen": "https://static.bainet.es/clip/d1e403ae-0a0c-4119-b6cb-cd0ce86a6ea5_source-aspect-ratio_1600w_0.jpg",
+    "destacado": false
+  },
+  {
+    "id": 7,
+    "nombre": "Ramen Tonkotsu",
+    "descripcion": "Sopa tradicional japonesa con caldo de cerdo y fideos.",
+    "precio": 12990,
+    "imagen": "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=400",
+    "destacado": false
+  },
+  {
+    "id": 8,
+    "nombre": "Maki Philadelphia",
+    "descripcion": "Roll con salmón, queso crema y pepino.",
+    "precio": 9990,
+    "imagen": "https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?w=400",
+    "destacado": false
+  }
+]
