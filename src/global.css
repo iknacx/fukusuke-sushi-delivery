@@ -303,6 +303,20 @@ button:focus-visible {
   color: #d7263d;
 }
 
+/* Enlace de admin */
+.admin-link {
+  background-color: #ff4d4d;
+  color: white !important;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.admin-link:hover {
+  background-color: #ff3333;
+  text-decoration: none;
+}
+
 @media (max-width: 768px) {
   #app {
     padding: 1rem;

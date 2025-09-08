@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración - Fukusuke Sushi</title>
+    <link rel="stylesheet" href="/src/global.css">
+    <link rel="stylesheet" href="/src/admin/styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="/">Fukusuke Sushi Admin</a>
+            </div>
+            <ul>
+                <li><a href="/">Inicio</a></li>
+                <li><a href="/admin.html" class="active">Admin</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="admin-container">
+            <div class="admin-sidebar">
+                <button class="tab-button active" data-tab="productos">Productos</button>
+                <button class="tab-button" data-tab="pedidos">Pedidos</button>
+                <button class="tab-button" data-tab="menu">Menú</button>
+            </div>
+
+            <div class="admin-content">
+                <div id="productos" class="tab-content active">
+                    <h2>Gestión de Productos</h2>
+                    <button id="agregarProducto" class="btn-primary">Agregar Producto</button>
+                    <div class="productos-lista"></div>
+                </div>
+
+                <div id="pedidos" class="tab-content">
+                    <h2>Pedidos</h2>
+                    <div class="pedidos-lista">
+                        <p>No hay pedidos pendientes</p>
+                    </div>
+                </div>
+
+                <div id="menu" class="tab-content">
+                    <h2>Gestión del Menú</h2>
+                    <div class="menu-config">
+                        <h3>Productos Destacados</h3>
+                        <div class="destacados-lista"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal para agregar/editar productos -->
+    <div id="productoModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Agregar Producto</h2>
+            <form id="productoForm">
+                <div class="form-group">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="descripcion">Descripción:</label>
+                    <textarea id="descripcion" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="precio">Precio:</label>
+                    <input type="number" id="precio" required>
+                </div>
+                <div class="form-group">
+                    <label for="imagen">URL de la imagen:</label>
+                    <input type="url" id="imagen" required>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="destacado">
+                        Producto destacado
+                    </label>
+                </div>
+                <button type="submit" class="btn-primary">Guardar</button>
+            </form>
+        </div>
+    </div>
+
+    <script type="module" src="/src/admin/main.js"></script>
+</body>
+</html>
