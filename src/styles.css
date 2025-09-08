@@ -198,6 +198,7 @@
     margin-bottom: 1rem;
   }
   
+  
   #login-modal input[type="email"],
   #login-modal input[type="password"] {
     padding: 0.8rem 0.6rem;
@@ -245,7 +246,6 @@
 #login-modal h2 {
   margin-top: 0;
   margin-bottom: 1.2rem;
-  color: #d72638;
   text-align: center;
   font-weight: 700;
   letter-spacing: 1px;
@@ -271,6 +271,7 @@
   font-size: 1rem;
   background: #fafafa;
   transition: border 0.2s;
+  color: #000;
 }
 
 #login-modal input[type="email"]:focus,
@@ -304,7 +305,6 @@
   background: none;
   border: none;
   font-size: 1.5rem;
-  color: #d72638;
   cursor: pointer;
   transition: color 0.2s;
 }
