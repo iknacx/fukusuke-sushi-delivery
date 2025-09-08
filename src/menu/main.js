@@ -1,9 +1,21 @@
 // JS para la página de menú
 import '../global.css'
-import productos from '../productos.json'
+
+let productos = [];
+
+// Cargar productos desde el archivo JSON
+async function cargarProductos() {
+    try {
+        const response = await fetch('/fukusuke-sushi-delivery/productos.json');
+        productos = await response.json();
+    } catch (error) {
+        console.error('Error al cargar productos:', error);
+    }
+}
 
 // Función para renderizar todos los productos del menú
-function renderizarMenu() {
+async function renderizarMenu() {
+	await cargarProductos();
 	const productosDestacados = productos.filter(producto => producto.destacado);
 	const productosNoDestacados = productos.filter(producto => !producto.destacado);
 	const grid = document.querySelector('.productos-grid');
