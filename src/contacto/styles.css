@@ -1,0 +1,62 @@
+/* Estilos para la página de contacto */
+body {
+    background: #f8f8f8;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 400px;
+    margin: 30px auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+h2 { color: #d32f2f; }
+.contact-info { margin-bottom: 20px; }
+.redes { margin-top: 20px; }
+.redes a { display: inline-block; margin-right: 15px; text-decoration: none; color: #333; font-weight: bold;}
+.redes a:hover { color: #d32f2f; }
+.icon { vertical-align: middle; margin-right: 5px;}
+
+/* Responsividad para la página de contacto */
+@media (max-width: 768px) {
+  .container {
+    max-width: 90%;
+    margin: 20px auto;
+    padding: 20px 1rem;
+  }
+  
+  .redes a {
+    display: block;
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    text-align: center;
+    background: #f8f8f8;
+    border-radius: 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    margin: 15px auto;
+    padding: 15px 0.8rem;
+  }
+  
+  h2 {
+    font-size: 1.3rem;
+    text-align: center;
+  }
+  
+  .contact-info p {
+    text-align: center;
+    font-size: 1.1rem;
+  }
+  
+  .redes p {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+}

@@ -2,56 +2,40 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacto - Fukusuke Sushi Delivery</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f8f8f8;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background: #222;
-            color: #fff;
-            padding: 20px;
-            text-align: center;
-        }
-        nav {
-            background: #e3e3e3;
-            padding: 10px 0;
-            text-align: center;
-        }
-        nav a {
-            color: #222;
-            text-decoration: none;
-            margin: 0 15px;
-            font-weight: bold;
-        }
-        .container {
-            max-width: 400px;
-            margin: 30px auto;
-            background: #fff;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-        h2 { color: #d32f2f; }
-        .contact-info { margin-bottom: 20px; }
-        .redes { margin-top: 20px; }
-        .redes a { display: inline-block; margin-right: 15px; text-decoration: none; color: #333; font-weight: bold;}
-        .redes a:hover { color: #d32f2f; }
-        .icon { vertical-align: middle; margin-right: 5px;}
-    </style>
+    <link rel="stylesheet" href="src/global.css" />
+    <link rel="stylesheet" href="src/contacto/styles.css" />
 </head>
 <body>
-    <header>
+    <header class="header">
+        <img src="https://tse2.mm.bing.net/th/id/OIP.MsG43BQ-GPPHFNDSV7a84QHaHa?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Logo Fukusuke" class="logo"/>
         <h1>Fukusuke Sushi Delivery</h1>
+        <nav>
+            <a href="index.html">Inicio</a>
+            <a href="menu.html">Menú</a>
+            <a href="contacto.html">Contacto</a>
+        </nav>
+        
+        <!-- Botón hamburguesa para móvil -->
+        <button class="menu-toggle" onclick="toggleMobileMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
     </header>
-    <nav>
-        <a href="index.html">Inicio</a>
-        <a href="Menu.html">Menú</a>
-        <a href="contacto.html">Contacto</a>
-    </nav>
+    
+    <!-- Menú móvil overlay -->
+    <div class="mobile-menu-overlay" onclick="closeMobileMenu()"></div>
+    
+    <!-- Menú móvil -->
+    <div class="mobile-menu" id="mobile-menu">
+        <nav>
+            <a href="index.html" onclick="closeMobileMenu()">Inicio</a>
+            <a href="menu.html" onclick="closeMobileMenu()">Menú</a>
+            <a href="contacto.html" onclick="closeMobileMenu()">Contacto</a>
+        </nav>
+    </div>
     <div class="container">
         <h2 id="contacto">Contacto</h2>
         <div class="contact-info">
@@ -71,4 +55,5 @@
         </div>
     </div>
 </body>
+<script type="module" src="src/contacto/main.js"></script>
 </html>
