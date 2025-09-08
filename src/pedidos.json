@@ -1,13 +1,15 @@
 [
   {
     "id": 1,
-    "cliente": "Juan Pérez",
-    "email": "juan.perez@email.com",
-    "telefono": "+56912345678",
-    "direccion": "Av. Providencia 1234, Santiago",
+    "cliente": {
+      "nombre": "Juan Pérez",
+      "email": "juan.perez@email.com",
+      "telefono": "+56912345678",
+      "direccion": "Av. Providencia 1234, Santiago"
+    },
     "fecha": "2025-09-08T15:30:00",
     "estado": "pendiente",
-    "items": [
+    "productos": [
       {
         "id": 1,
         "nombre": "Sushi Clásico",
@@ -26,32 +28,42 @@
   },
   {
     "id": 2,
-    "cliente": "María González",
-    "email": "maria.g@email.com",
-    "telefono": "+56987654321",
-    "direccion": "Las Condes 5678, Santiago",
+    "cliente": {
+      "nombre": "María González",
+      "email": "maria.g@email.com",
+      "telefono": "+56987654321",
+      "direccion": "Las Condes 5678, Santiago"
+    },
     "fecha": "2025-09-08T16:00:00",
-    "estado": "en_proceso",
-    "items": [
+    "estado": "en_preparacion",
+    "productos": [
       {
         "id": 3,
-        "nombre": "Roll California",
-        "cantidad": 3,
+        "nombre": "Sashimi Variado",
+        "cantidad": 1,
+        "precio": 13990
+      },
+      {
+        "id": 5,
+        "nombre": "Nigiri de Salmón",
+        "cantidad": 2,
         "precio": 8990
       }
     ],
-    "total": 26970,
+    "total": 31970,
     "notas": "Extra jengibre"
   },
   {
     "id": 3,
-    "cliente": "Carlos Rodríguez",
-    "email": "carlos.r@email.com",
-    "telefono": "+56923456789",
-    "direccion": "Ñuñoa 910, Santiago",
+    "cliente": {
+      "nombre": "Carlos Rodríguez",
+      "email": "carlos.r@email.com",
+      "telefono": "+56923456789",
+      "direccion": "Ñuñoa 910, Santiago"
+    },
     "fecha": "2025-09-08T14:45:00",
     "estado": "entregado",
-    "items": [
+    "productos": [
       {
         "id": 1,
         "nombre": "Sushi Clásico",
@@ -60,12 +72,72 @@
       },
       {
         "id": 4,
-        "nombre": "Roll Tempura Especial",
+        "nombre": "Combo Familiar",
+        "cantidad": 1,
+        "precio": 16990
+      }
+    ],
+    "total": 28980,
+    "notas": ""
+  },
+  {
+    "id": 4,
+    "cliente": {
+      "nombre": "Ana Silva",
+      "email": "ana.silva@email.com",
+      "telefono": "+56945678912",
+      "direccion": "San Miguel 2345, Santiago"
+    },
+    "fecha": "2025-09-08T18:15:00",
+    "estado": "pendiente",
+    "productos": [
+      {
+        "id": 2,
+        "nombre": "Sushi Tempura",
+        "cantidad": 3,
+        "precio": 6990
+      },
+      {
+        "id": 6,
+        "nombre": "Gyozas",
+        "cantidad": 2,
+        "precio": 6990
+      },
+      {
+        "id": 7,
+        "nombre": "Ramen Tonkotsu",
+        "cantidad": 1,
+        "precio": 12990
+      }
+    ],
+    "total": 47950,
+    "notas": "Entregar después de las 19:00"
+  },
+  {
+    "id": 5,
+    "cliente": {
+      "nombre": "Luis Morales",
+      "email": "luis.morales@email.com",
+      "telefono": "+56934567890",
+      "direccion": "Maipú 1567, Santiago"
+    },
+    "fecha": "2025-09-08T17:30:00",
+    "estado": "en_camino",
+    "productos": [
+      {
+        "id": 4,
+        "nombre": "Combo Familiar",
+        "cantidad": 1,
+        "precio": 16990
+      },
+      {
+        "id": 8,
+        "nombre": "Maki Philadelphia",
         "cantidad": 2,
         "precio": 9990
       }
     ],
-    "total": 31970,
-    "notas": ""
+    "total": 36970,
+    "notas": "Segundo piso, departamento 205"
   }
 ]

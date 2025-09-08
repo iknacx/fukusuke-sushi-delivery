@@ -263,6 +263,19 @@ button:focus-visible {
   color: #d7263d;
 }
 
+/* Enlace de admin en menú móvil */
+.mobile-menu nav a.admin-link {
+  background-color: #ff4d4d;
+  color: white !important;
+  border-radius: 6px;
+  margin: 0.5rem 0;
+}
+
+.mobile-menu nav a.admin-link:hover {
+  background-color: #ff3333 !important;
+  color: white !important;
+}
+
 .mobile-menu #carrito-mobile {
   display: block;
   padding: 1rem;

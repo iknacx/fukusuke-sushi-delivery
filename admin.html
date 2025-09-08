@@ -7,20 +7,44 @@
     <link rel="stylesheet" href="/src/global.css">
     <link rel="stylesheet" href="/src/admin/styles.css">
 </head>
-<body>
-    <header>
-        <nav>
-            <div class="logo">
-                <a href="/">Fukusuke Sushi Admin</a>
-            </div>
-            <ul>
-                <li><a href="/">Inicio</a></li>
-                <li><a href="/admin.html" class="active">Admin</a></li>
-            </ul>
-        </nav>
+  <body>
+    <header class="header">
+      <img src="https://tse2.mm.bing.net/th/id/OIP.MsG43BQ-GPPHFNDSV7a84QHaHa?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Logo Fukusuke" class="logo"/>
+      <h1>Fukusuke Sushi Delivery - Admin</h1>
+      <nav>
+        <a href="index.html">Inicio</a>
+        <a href="menu.html">Menú</a>
+        <a href="contacto.html">Contacto</a>
+        <a href="admin.html" class="admin-link active">Admin</a>
+      </nav>
+      
+      <!-- Botón hamburguesa para móvil -->
+      <button class="menu-toggle" onclick="toggleMobileMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </header>
+    
+    <!-- Menú móvil overlay -->
+    <div class="mobile-menu-overlay" onclick="closeMobileMenu()"></div>
+    
+    <!-- Menú móvil -->
+    <div class="mobile-menu" id="mobile-menu">
+      <nav>
+        <a href="index.html" onclick="closeMobileMenu()">Inicio</a>
+        <a href="menu.html" onclick="closeMobileMenu()">Menú</a>
+        <a href="contacto.html" onclick="closeMobileMenu()">Contacto</a>
+        <a href="admin.html" onclick="closeMobileMenu()">Admin</a>
+      </nav>
+    </div>
 
-    <main>
+    <div class="banner-foto">
+      <img src="https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?w=1200&h=400&fit=crop" alt="Panel de Administración Fukusuke">
+      <div class="banner-texto">
+        <span>Panel de Administración - Gestión de Productos y Pedidos</span>
+      </div>
+    </div>    <main>
         <div class="admin-container">
             <div class="admin-sidebar">
                 <button class="tab-button active" data-tab="productos">Productos</button>
@@ -43,10 +67,9 @@
                 </div>
 
                 <div id="menu" class="tab-content">
-                    <h2>Gestión del Menú</h2>
+                    <h2>Configuración del Menú</h2>
                     <div class="menu-config">
-                        <h3>Productos Destacados</h3>
-                        <div class="destacados-lista"></div>
+                        <!-- El contenido se generará dinámicamente -->
                     </div>
                 </div>
             </div>
@@ -87,5 +110,45 @@
     </div>
 
     <script type="module" src="/src/admin/main.js"></script>
+    
+    <script>
+        // Funciones para el menú móvil (reutilizadas del main.js)
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const overlay = document.querySelector('.mobile-menu-overlay');
+            const toggle = document.querySelector('.menu-toggle');
+            
+            if (!mobileMenu || !overlay || !toggle) return;
+            
+            const isActive = mobileMenu.classList.contains('active');
+            
+            if (isActive) {
+                // Cerrar menú
+                mobileMenu.classList.remove('active');
+                overlay.classList.remove('active');
+                toggle.classList.remove('active');
+                document.body.style.overflow = '';
+            } else {
+                // Abrir menú
+                mobileMenu.classList.add('active');
+                overlay.classList.add('active');
+                toggle.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const overlay = document.querySelector('.mobile-menu-overlay');
+            const toggle = document.querySelector('.menu-toggle');
+            
+            if (!mobileMenu || !overlay || !toggle) return;
+            
+            mobileMenu.classList.remove('active');
+            overlay.classList.remove('active');
+            toggle.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    </script>
 </body>
 </html>
