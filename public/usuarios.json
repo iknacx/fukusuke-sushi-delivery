@@ -1,0 +1,68 @@
+[
+  {
+    "id": 1,
+    "nombre": "Juan Pérez",
+    "email": "juan.perez@email.com",
+    "telefono": "+56912345678",
+    "direccion": "Av. Providencia 1234, Santiago",
+    "tipo": "cliente",
+    "fechaRegistro": "2025-01-15T10:30:00",
+    "estado": "activo",
+    "ultimoAcceso": "2025-09-08T14:30:00"
+  },
+  {
+    "id": 2,
+    "nombre": "María González",
+    "email": "maria.gonzalez@email.com",
+    "telefono": "+56987654321",
+    "direccion": "Las Condes 5678, Santiago",
+    "tipo": "cliente",
+    "fechaRegistro": "2025-02-20T16:45:00",
+    "estado": "activo",
+    "ultimoAcceso": "2025-09-07T20:15:00"
+  },
+  {
+    "id": 3,
+    "nombre": "Carlos Rodríguez",
+    "email": "carlos.rodriguez@email.com",
+    "telefono": "+56923456789",
+    "direccion": "Ñuñoa 910, Santiago",
+    "tipo": "cliente",
+    "fechaRegistro": "2025-03-10T09:20:00",
+    "estado": "inactivo",
+    "ultimoAcceso": "2025-08-25T11:00:00"
+  },
+  {
+    "id": 4,
+    "nombre": "Admin Principal",
+    "email": "admin@fukusuke.com",
+    "telefono": "+56911111111",
+    "direccion": "Oficina Central, Santiago",
+    "tipo": "admin",
+    "fechaRegistro": "2025-01-01T00:00:00",
+    "estado": "activo",
+    "ultimoAcceso": "2025-09-08T08:00:00"
+  },
+  {
+    "id": 5,
+    "nombre": "Ana Silva",
+    "email": "ana.silva@email.com",
+    "telefono": "+56945678912",
+    "direccion": "San Miguel 2345, Santiago",
+    "tipo": "cliente",
+    "fechaRegistro": "2025-04-05T14:10:00",
+    "estado": "activo",
+    "ultimoAcceso": "2025-09-08T18:45:00"
+  },
+  {
+    "id": 6,
+    "nombre": "Moderador Store",
+    "email": "moderador@fukusuke.com",
+    "telefono": "+56922222222",
+    "direccion": "Sucursal Centro, Santiago",
+    "tipo": "moderador",
+    "fechaRegistro": "2025-02-01T12:00:00",
+    "estado": "activo",
+    "ultimoAcceso": "2025-09-08T16:30:00"
+  }
+]

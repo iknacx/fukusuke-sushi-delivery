@@ -1,20 +1,24 @@
 // Estado global de la aplicación
 let productos = [];
 let pedidos = [];
+let usuarios = [];
 
 // Cargar datos desde los archivos JSON
 async function cargarDatos() {
     try {
-        const [productosResponse, pedidosResponse] = await Promise.all([
+        const [productosResponse, pedidosResponse, usuariosResponse] = await Promise.all([
             fetch('/fukusuke-sushi-delivery/productos.json'),
-            fetch('/fukusuke-sushi-delivery/pedidos.json')
+            fetch('/fukusuke-sushi-delivery/pedidos.json'),
+            fetch('/fukusuke-sushi-delivery/usuarios.json')
         ]);
         
         productos = await productosResponse.json();
         pedidos = await pedidosResponse.json();
+        usuarios = await usuariosResponse.json();
         
         mostrarProductos();
         mostrarPedidos();
+        mostrarUsuarios();
     } catch (error) {
         console.error('Error al cargar datos:', error);
     }
@@ -43,6 +47,8 @@ function inicializarTabs() {
                     mostrarProductos();
                 } else if (tabId === 'pedidos') {
                     mostrarPedidos();
+                } else if (tabId === 'usuarios') {
+                    mostrarUsuarios();
                 } else if (tabId === 'menu') {
                     mostrarConfiguracionMenu();
                 }
@@ -470,3 +476,244 @@ function toggleDestacado(productoId) {
 
 // Hacer la función accesible globalmente
 window.toggleDestacado = toggleDestacado;
+
+// ========== GESTIÓN DE USUARIOS ==========
+
+// Variables para el modal de usuarios
+const usuarioModal = document.getElementById('usuarioModal');
+let editandoUsuarioId = null;
+
+// Función para mostrar usuarios
+function mostrarUsuarios() {
+    const usuariosLista = document.querySelector('.usuarios-lista');
+    if (!usuariosLista) return;
+
+    usuariosLista.innerHTML = '';
+
+    if (usuarios.length === 0) {
+        usuariosLista.innerHTML = '<p>No hay usuarios registrados</p>';
+        return;
+    }
+
+    usuarios.forEach(usuario => {
+        const usuarioCard = document.createElement('div');
+        usuarioCard.className = 'usuario-card';
+        usuarioCard.innerHTML = `
+            <div class="usuario-header">
+                <h3>${usuario.nombre}</h3>
+                <div class="usuario-badges">
+                    <span class="tipo-usuario ${usuario.tipo}">${formatearTipoUsuario(usuario.tipo)}</span>
+                    <span class="estado-usuario ${usuario.estado}">${formatearEstadoUsuario(usuario.estado)}</span>
+                </div>
+            </div>
+            <div class="usuario-info">
+                <p><strong>Email:</strong> ${usuario.email}</p>
+                <p><strong>Teléfono:</strong> ${usuario.telefono}</p>
+                <p><strong>Dirección:</strong> ${usuario.direccion}</p>
+                <p><strong>Registro:</strong> ${formatearFecha(usuario.fechaRegistro)}</p>
+                <p><strong>Último acceso:</strong> ${formatearFecha(usuario.ultimoAcceso)}</p>
+            </div>
+            <div class="usuario-acciones">
+                <button onclick="editarUsuario(${usuario.id})" class="btn-editar">Editar</button>
+                <button onclick="eliminarUsuario(${usuario.id})" class="btn-eliminar">Eliminar</button>
+                <button onclick="cambiarEstadoUsuario(${usuario.id})" class="btn-estado">
+                    ${usuario.estado === 'activo' ? 'Desactivar' : 'Activar'}
+                </button>
+            </div>
+        `;
+        usuariosLista.appendChild(usuarioCard);
+    });
+}
+
+// Funciones auxiliares para usuarios
+function formatearTipoUsuario(tipo) {
+    const tipos = {
+        'admin': 'Administrador',
+        'moderador': 'Moderador', 
+        'cliente': 'Cliente'
+    };
+    return tipos[tipo] || tipo;
+}
+
+function formatearEstadoUsuario(estado) {
+    const estados = {
+        'activo': 'Activo',
+        'inactivo': 'Inactivo'
+    };
+    return estados[estado] || estado;
+}
+
+function formatearFecha(fecha) {
+    return new Date(fecha).toLocaleString('es-CL');
+}
+
+// Funciones para gestionar usuarios
+function editarUsuario(usuarioId) {
+    const usuario = usuarios.find(u => u.id === usuarioId);
+    if (!usuario) return;
+    
+    editandoUsuarioId = usuarioId;
+    
+    // Llenar el formulario con los datos del usuario
+    document.getElementById('nombreUsuario').value = usuario.nombre;
+    document.getElementById('emailUsuario').value = usuario.email;
+    document.getElementById('telefonoUsuario').value = usuario.telefono;
+    document.getElementById('direccionUsuario').value = usuario.direccion;
+    document.getElementById('tipoUsuario').value = usuario.tipo;
+    document.getElementById('estadoUsuario').value = usuario.estado;
+    
+    // Cambiar título del modal
+    document.getElementById('usuarioModalTitle').textContent = 'Editar Usuario';
+    
+    // Mostrar modal
+    usuarioModal.style.display = 'block';
+}
+
+function eliminarUsuario(usuarioId) {
+    const usuario = usuarios.find(u => u.id === usuarioId);
+    if (!usuario) return;
+    
+    if (confirm(`¿Estás seguro de que deseas eliminar al usuario "${usuario.nombre}"?`)) {
+        usuarios = usuarios.filter(u => u.id !== usuarioId);
+        mostrarUsuarios();
+    }
+}
+
+function cambiarEstadoUsuario(usuarioId) {
+    const usuario = usuarios.find(u => u.id === usuarioId);
+    if (!usuario) return;
+    
+    usuario.estado = usuario.estado === 'activo' ? 'inactivo' : 'activo';
+    mostrarUsuarios();
+}
+
+// Funciones de filtrado
+function filtrarUsuarios() {
+    const filtroTipo = document.getElementById('filtroTipoUsuario').value;
+    const filtroEstado = document.getElementById('filtroEstadoUsuario').value;
+    
+    let usuariosFiltrados = usuarios;
+    
+    if (filtroTipo !== 'todos') {
+        usuariosFiltrados = usuariosFiltrados.filter(u => u.tipo === filtroTipo);
+    }
+    
+    if (filtroEstado !== 'todos') {
+        usuariosFiltrados = usuariosFiltrados.filter(u => u.estado === filtroEstado);
+    }
+    
+    // Mostrar usuarios filtrados
+    const usuariosLista = document.querySelector('.usuarios-lista');
+    usuariosLista.innerHTML = '';
+    
+    if (usuariosFiltrados.length === 0) {
+        usuariosLista.innerHTML = '<p>No hay usuarios que coincidan con los filtros</p>';
+        return;
+    }
+    
+    usuariosFiltrados.forEach(usuario => {
+        const usuarioCard = document.createElement('div');
+        usuarioCard.className = 'usuario-card';
+        usuarioCard.innerHTML = `
+            <div class="usuario-header">
+                <h3>${usuario.nombre}</h3>
+                <div class="usuario-badges">
+                    <span class="tipo-usuario ${usuario.tipo}">${formatearTipoUsuario(usuario.tipo)}</span>
+                    <span class="estado-usuario ${usuario.estado}">${formatearEstadoUsuario(usuario.estado)}</span>
+                </div>
+            </div>
+            <div class="usuario-info">
+                <p><strong>Email:</strong> ${usuario.email}</p>
+                <p><strong>Teléfono:</strong> ${usuario.telefono}</p>
+                <p><strong>Dirección:</strong> ${usuario.direccion}</p>
+                <p><strong>Registro:</strong> ${formatearFecha(usuario.fechaRegistro)}</p>
+                <p><strong>Último acceso:</strong> ${formatearFecha(usuario.ultimoAcceso)}</p>
+            </div>
+            <div class="usuario-acciones">
+                <button onclick="editarUsuario(${usuario.id})" class="btn-editar">Editar</button>
+                <button onclick="eliminarUsuario(${usuario.id})" class="btn-eliminar">Eliminar</button>
+                <button onclick="cambiarEstadoUsuario(${usuario.id})" class="btn-estado">
+                    ${usuario.estado === 'activo' ? 'Desactivar' : 'Activar'}
+                </button>
+            </div>
+        `;
+        usuariosLista.appendChild(usuarioCard);
+    });
+}
+
+// Hacer funciones accesibles globalmente
+window.editarUsuario = editarUsuario;
+window.eliminarUsuario = eliminarUsuario;
+window.cambiarEstadoUsuario = cambiarEstadoUsuario;
+window.filtrarUsuarios = filtrarUsuarios;
+
+// Event listeners para el modal de usuarios
+document.addEventListener('DOMContentLoaded', () => {
+    // Botón agregar usuario
+    const agregarUsuarioBtn = document.getElementById('agregarUsuario');
+    if (agregarUsuarioBtn) {
+        agregarUsuarioBtn.addEventListener('click', () => {
+            editandoUsuarioId = null;
+            document.getElementById('usuarioForm').reset();
+            document.getElementById('usuarioModalTitle').textContent = 'Agregar Usuario';
+            usuarioModal.style.display = 'block';
+        });
+    }
+    
+    // Cerrar modal de usuario
+    const closeUsuarioBtn = document.querySelector('.close-usuario');
+    if (closeUsuarioBtn) {
+        closeUsuarioBtn.addEventListener('click', () => {
+            usuarioModal.style.display = 'none';
+        });
+    }
+    
+    // Cerrar modal al hacer click fuera
+    if (usuarioModal) {
+        window.addEventListener('click', (e) => {
+            if (e.target === usuarioModal) {
+                usuarioModal.style.display = 'none';
+            }
+        });
+    }
+    
+    // Manejar envío del formulario de usuario
+    const usuarioForm = document.getElementById('usuarioForm');
+    if (usuarioForm) {
+        usuarioForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const usuarioData = {
+                nombre: document.getElementById('nombreUsuario').value,
+                email: document.getElementById('emailUsuario').value,
+                telefono: document.getElementById('telefonoUsuario').value,
+                direccion: document.getElementById('direccionUsuario').value,
+                tipo: document.getElementById('tipoUsuario').value,
+                estado: document.getElementById('estadoUsuario').value
+            };
+            
+            if (editandoUsuarioId === null) {
+                // Agregar nuevo usuario
+                usuarioData.id = usuarios.length > 0 ? Math.max(...usuarios.map(u => u.id)) + 1 : 1;
+                usuarioData.fechaRegistro = new Date().toISOString();
+                usuarioData.ultimoAcceso = new Date().toISOString();
+                usuarios.push(usuarioData);
+            } else {
+                // Actualizar usuario existente
+                const index = usuarios.findIndex(u => u.id === editandoUsuarioId);
+                if (index !== -1) {
+                    // Mantener algunos campos originales
+                    usuarioData.id = editandoUsuarioId;
+                    usuarioData.fechaRegistro = usuarios[index].fechaRegistro;
+                    usuarioData.ultimoAcceso = usuarios[index].ultimoAcceso;
+                    usuarios[index] = usuarioData;
+                }
+            }
+            
+            // Actualizar vista y cerrar modal
+            mostrarUsuarios();
+            usuarioModal.style.display = 'none';
+            usuarioForm.reset();
+        });
+    }
+});
