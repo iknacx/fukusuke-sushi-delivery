@@ -41,20 +41,60 @@ async function renderizarMenu() {
 	});
 }
 
+// Función para buscar productos
+function buscarProductos() {
+    const terminoBusqueda = document.getElementById('buscarProducto').value.toLowerCase();
+    const productosFiltrados = productos.filter(producto => 
+        producto.nombre.toLowerCase().includes(terminoBusqueda) ||
+        producto.descripcion.toLowerCase().includes(terminoBusqueda)
+    );
+    renderizarProductosFiltrados(productosFiltrados);
+}
+
+// Función para mostrar productos filtrados
+function renderizarProductosFiltrados(productosFiltrados) {
+    const grid = document.querySelector('.productos-grid');
+    grid.innerHTML = '';
+
+    if (productosFiltrados.length === 0) {
+        grid.innerHTML = '<p class="no-resultados">No se encontraron productos que coincidan con la búsqueda</p>';
+        return;
+    }
+
+    productosFiltrados.forEach((producto) => {
+        const card = document.createElement('div');
+        card.className = 'producto-card';
+        card.innerHTML = `
+            <img src="${producto.imagen}" alt="${producto.nombre}">
+            <h3>${producto.nombre}</h3>
+            <p>${producto.descripcion}</p>
+            <span class="precio">$${producto.precio.toLocaleString()}</span>
+            <button data-producto-id="${producto.id}">Agregar</button>
+        `;
+        grid.appendChild(card);
+    });
+}
+
 // Inicializar cuando se cargue la página
 document.addEventListener('DOMContentLoaded', () => {
-	renderizarMenu();
-	
-	// Manejar clics en botones de agregar (simple demo)
-	document.addEventListener('click', (e) => {
-		if (e.target.matches('.producto-card button')) {
-			const productoId = parseInt(e.target.dataset.productoId);
-			const producto = productos.find(p => p.id === productoId);
-			if (producto) {
-				alert(`${producto.nombre} agregado al carrito (demo)`);
-			}
-		}
-	});
+    renderizarMenu();
+    
+    // Configurar búsqueda en tiempo real
+    const campoBusqueda = document.getElementById('buscarProducto');
+    if (campoBusqueda) {
+        campoBusqueda.addEventListener('input', buscarProductos);
+    }
+    
+    // Manejar clics en botones de agregar (simple demo)
+    document.addEventListener('click', (e) => {
+        if (e.target.matches('.producto-card button')) {
+            const productoId = parseInt(e.target.dataset.productoId);
+            const producto = productos.find(p => p.id === productoId);
+            if (producto) {
+                alert(`${producto.nombre} agregado al carrito (demo)`);
+            }
+        }
+    });
 });
 
 // Funciones para el menú móvil

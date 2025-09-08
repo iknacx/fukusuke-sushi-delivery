@@ -51,10 +51,90 @@ function inicializarTabs() {
     });
 }
 
+// Funciones de búsqueda y filtrado
+function buscarPedidos() {
+    const terminoBusqueda = document.getElementById('buscarPedido').value.toLowerCase();
+    const estadoFiltro = document.getElementById('filtroEstado').value;
+    const fechaFiltro = document.getElementById('filtroFecha').value;
+
+    const pedidosFiltrados = pedidos.filter(pedido => {
+        const coincideTermino = 
+            pedido.cliente.toLowerCase().includes(terminoBusqueda) ||
+            pedido.id.toString().includes(terminoBusqueda) ||
+            pedido.email.toLowerCase().includes(terminoBusqueda);
+        
+        const coincideEstado = estadoFiltro === 'todos' || pedido.estado === estadoFiltro;
+        
+        const coincideFecha = !fechaFiltro || 
+            new Date(pedido.fecha).toLocaleDateString() === new Date(fechaFiltro).toLocaleDateString();
+
+        return coincideTermino && coincideEstado && coincideFecha;
+    });
+
+    mostrarPedidosFiltrados(pedidosFiltrados);
+}
+
+function filtrarPedidos() {
+    buscarPedidos(); // Reutilizamos la función de búsqueda
+}
+
+function mostrarPedidosFiltrados(pedidosFiltrados) {
+    const pedidosLista = document.querySelector('.pedidos-lista');
+    pedidosLista.innerHTML = '';
+
+    if (pedidosFiltrados.length === 0) {
+        pedidosLista.innerHTML = '<p>No se encontraron pedidos que coincidan con la búsqueda</p>';
+        return;
+    }
+
+    pedidosFiltrados.forEach(pedido => {
+        const pedidoCard = document.createElement('div');
+        pedidoCard.className = 'pedido-card';
+        pedidoCard.innerHTML = `
+            <div class="pedido-header">
+                <h3>Pedido #${pedido.id}</h3>
+                <span class="estado-pedido ${pedido.estado}">${formatearEstado(pedido.estado)}</span>
+            </div>
+            <div class="pedido-info">
+                <p><strong>Cliente:</strong> ${pedido.cliente}</p>
+                <p><strong>Email:</strong> ${pedido.email}</p>
+                <p><strong>Teléfono:</strong> ${pedido.telefono}</p>
+                <p><strong>Dirección:</strong> ${pedido.direccion}</p>
+                <p><strong>Fecha:</strong> ${formatearFecha(pedido.fecha)}</p>
+                ${pedido.notas ? `<p><strong>Notas:</strong> ${pedido.notas}</p>` : ''}
+            </div>
+            <div class="pedido-items">
+                <h4>Items:</h4>
+                <ul>
+                    ${pedido.items.map(item => `
+                        <li>${item.cantidad}x ${item.nombre} - $${item.precio.toLocaleString()}</li>
+                    `).join('')}
+                </ul>
+                <p class="total"><strong>Total:</strong> $${pedido.total.toLocaleString()}</p>
+            </div>
+            <div class="pedido-acciones">
+                <select onchange="cambiarEstado(${pedido.id}, this.value)" class="select-estado">
+                    <option value="pendiente" ${pedido.estado === 'pendiente' ? 'selected' : ''}>Pendiente</option>
+                    <option value="en_proceso" ${pedido.estado === 'en_proceso' ? 'selected' : ''}>En Proceso</option>
+                    <option value="entregado" ${pedido.estado === 'entregado' ? 'selected' : ''}>Entregado</option>
+                </select>
+                <button class="btn-editar" onclick="editarPedido(${pedido.id})">Editar</button>
+                <button class="btn-eliminar" onclick="eliminarPedido(${pedido.id})">Eliminar</button>
+            </div>
+        `;
+        pedidosLista.appendChild(pedidoCard);
+    });
+}
+
 // Inicializar la aplicación cuando el DOM esté listo
 document.addEventListener('DOMContentLoaded', () => {
     inicializarTabs();
     cargarDatos();
+    
+    // Event listener para búsqueda en tiempo real
+    document.getElementById('buscarPedido')?.addEventListener('input', () => {
+        buscarPedidos();
+    });
 });
 
 

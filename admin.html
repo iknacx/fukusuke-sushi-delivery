@@ -61,6 +61,23 @@
 
                 <div id="pedidos" class="tab-content">
                     <h2>Pedidos</h2>
+                    <div class="busqueda-container">
+                        <div class="busqueda-grupo">
+                            <input type="text" id="buscarPedido" placeholder="Buscar por cliente o número de pedido...">
+                            <button class="btn-buscar" onclick="buscarPedidos()">
+                                🔍
+                            </button>
+                        </div>
+                        <div class="filtros-pedidos">
+                            <select id="filtroEstado" onchange="filtrarPedidos()">
+                                <option value="todos">Todos los estados</option>
+                                <option value="pendiente">Pendiente</option>
+                                <option value="en_proceso">En Proceso</option>
+                                <option value="entregado">Entregado</option>
+                            </select>
+                            <input type="date" id="filtroFecha" onchange="filtrarPedidos()">
+                        </div>
+                    </div>
                     <div class="pedidos-lista">
                         <p>No hay pedidos pendientes</p>
                     </div>
