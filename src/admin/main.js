@@ -43,6 +43,8 @@ function inicializarTabs() {
                     mostrarProductos();
                 } else if (tabId === 'pedidos') {
                     mostrarPedidos();
+                } else if (tabId === 'menu') {
+                    mostrarConfiguracionMenu();
                 }
             }
         });
@@ -55,94 +57,9 @@ document.addEventListener('DOMContentLoaded', () => {
     cargarDatos();
 });
 
-// Función para mostrar los pedidos
-function mostrarPedidos() {
-    const pedidosLista = document.querySelector('.pedidos-lista');
-    if (!pedidosLista) return;
 
-    pedidosLista.innerHTML = '';
-
-    if (pedidos.length === 0) {
-        pedidosLista.innerHTML = '<p>No hay pedidos registrados</p>';
-        return;
-    }
-
-    pedidos.forEach(pedido => {
-        const pedidoCard = document.createElement('div');
-        pedidoCard.className = 'pedido-card';
-        pedidoCard.innerHTML = `
-            <div class="pedido-header">
-                <h3>Pedido #${pedido.id}</h3>
-                <span class="estado-pedido ${pedido.estado}">${formatearEstado(pedido.estado)}</span>
-            </div>
-            <div class="pedido-info">
-                <p><strong>Cliente:</strong> ${pedido.cliente}</p>
-                <p><strong>Email:</strong> ${pedido.email}</p>
-                <p><strong>Teléfono:</strong> ${pedido.telefono}</p>
-                <p><strong>Dirección:</strong> ${pedido.direccion}</p>
-                <p><strong>Fecha:</strong> ${formatearFecha(pedido.fecha)}</p>
-                ${pedido.notas ? `<p><strong>Notas:</strong> ${pedido.notas}</p>` : ''}
-            </div>
-            <div class="pedido-items">
-                <h4>Items:</h4>
-                <ul>
-                    ${pedido.items.map(item => `
-                        <li>${item.cantidad}x ${item.nombre} - $${item.precio.toLocaleString()}</li>
-                    `).join('')}
-                </ul>
-                <p class="total"><strong>Total:</strong> $${pedido.total.toLocaleString()}</p>
-            </div>
-            <div class="pedido-acciones">
-                <select onchange="cambiarEstado(${pedido.id}, this.value)" class="select-estado">
-                    <option value="pendiente" ${pedido.estado === 'pendiente' ? 'selected' : ''}>Pendiente</option>
-                    <option value="en_proceso" ${pedido.estado === 'en_proceso' ? 'selected' : ''}>En Proceso</option>
-                    <option value="entregado" ${pedido.estado === 'entregado' ? 'selected' : ''}>Entregado</option>
-                </select>
-                <button class="btn-editar" onclick="editarPedido(${pedido.id})">Editar</button>
-                <button class="btn-eliminar" onclick="eliminarPedido(${pedido.id})">Eliminar</button>
-            </div>
-        `;
-        pedidosLista.appendChild(pedidoCard);
-    });
-}
 
 // Funciones auxiliares
-function formatearEstado(estado) {
-    const estados = {
-        'pendiente': 'Pendiente',
-        'en_proceso': 'En Proceso',
-        'entregado': 'Entregado'
-    };
-    return estados[estado] || estado;
-}
-
-function formatearFecha(fecha) {
-    return new Date(fecha).toLocaleString('es-CL');
-}
-
-// Funciones para gestionar pedidos
-function cambiarEstado(pedidoId, nuevoEstado) {
-    const pedido = pedidos.find(p => p.id === pedidoId);
-    if (!pedido) return;
-
-    pedido.estado = nuevoEstado;
-    mostrarPedidos();
-}
-
-function editarPedido(pedidoId) {
-    const pedido = pedidos.find(p => p.id === pedidoId);
-    if (!pedido) return;
-    
-    // Aquí podrías implementar la lógica para editar el pedido
-    alert('Funcionalidad de edición en desarrollo');
-}
-
-function eliminarPedido(pedidoId) {
-    if (confirm('¿Estás seguro de que deseas eliminar este pedido?')) {
-        pedidos = pedidos.filter(p => p.id !== pedidoId);
-        mostrarPedidos();
-    }
-}
 
 // Mostrar productos en la lista
 function mostrarProductos() {
@@ -263,17 +180,6 @@ window.eliminarProducto = (id) => {
     }
 };
 
-// Funciones para gestionar pedidos
-async function cargarPedidos() {
-    try {
-        const response = await fetch('/src/pedidos.json');
-        pedidos = await response.json();
-        mostrarPedidos();
-    } catch (error) {
-        console.error('Error al cargar pedidos:', error);
-    }
-}
-
 function mostrarPedidos() {
     const pedidosLista = document.querySelector('.pedidos-lista');
     pedidosLista.innerHTML = '';
@@ -351,12 +257,135 @@ window.editarPedido = (id) => {
 window.eliminarPedido = (id) => {
     if (confirm('¿Estás seguro de que deseas eliminar este pedido?')) {
         pedidos = pedidos.filter(p => p.id !== id);
-        mostrarPedidos();
     }
 };
 
 // Inicializar la página
 document.addEventListener('DOMContentLoaded', () => {
-    cargarProductos();
-    cargarPedidos();
+    cargarDatos();
 });
+
+// Función para mostrar la configuración del menú
+function mostrarConfiguracionMenu() {
+    const menuConfig = document.querySelector('#menu .menu-config');
+    if (!menuConfig) return;
+
+    menuConfig.innerHTML = `
+        <div class="menu-section">
+            <h3>Productos Destacados en la Página Principal</h3>
+            <p>Selecciona qué productos aparecerán como destacados en la página de inicio:</p>
+            <div class="destacados-grid"></div>
+        </div>
+        
+        <div class="menu-section">
+            <h3>Categorías del Menú</h3>
+            <p>Organiza los productos por categorías:</p>
+            <div class="categorias-config">
+                <div class="categoria">
+                    <h4>🍣 Sushi y Rolls</h4>
+                    <div class="productos-categoria" data-categoria="sushi"></div>
+                </div>
+                <div class="categoria">
+                    <h4>🍜 Sopas y Calientes</h4>
+                    <div class="productos-categoria" data-categoria="sopas"></div>
+                </div>
+                <div class="categoria">
+                    <h4>🥟 Entradas y Acompañamientos</h4>
+                    <div class="productos-categoria" data-categoria="entradas"></div>
+                </div>
+                <div class="categoria">
+                    <h4>🍱 Combos Familiares</h4>
+                    <div class="productos-categoria" data-categoria="combos"></div>
+                </div>
+            </div>
+        </div>
+    `;
+
+    // Renderizar productos destacados
+    renderizarProductosDestacados();
+    // Renderizar productos por categorías
+    renderizarProductosPorCategorias();
+}
+
+function renderizarProductosDestacados() {
+    const destacadosGrid = document.querySelector('.destacados-grid');
+    if (!destacadosGrid) return;
+
+    destacadosGrid.innerHTML = '';
+    
+    productos.forEach(producto => {
+        const card = document.createElement('div');
+        card.className = `producto-destacado-card ${producto.destacado ? 'destacado' : ''}`;
+        card.innerHTML = `
+            <img src="${producto.imagen}" alt="${producto.nombre}" style="width: 60px; height: 60px; object-fit: cover; border-radius: 4px;">
+            <div class="producto-info">
+                <h4>${producto.nombre}</h4>
+                <p>$${producto.precio.toLocaleString()}</p>
+            </div>
+            <label class="toggle-destacado">
+                <input type="checkbox" ${producto.destacado ? 'checked' : ''} 
+                       onchange="toggleDestacado(${producto.id})">
+                <span class="checkmark">Destacado</span>
+            </label>
+        `;
+        destacadosGrid.appendChild(card);
+    });
+}
+
+function renderizarProductosPorCategorias() {
+    const categoriasMap = {
+        'sushi': ['Sushi', 'Roll', 'Maki', 'Nigiri', 'Sashimi'],
+        'sopas': ['Ramen', 'Sopa', 'Caldo'],
+        'entradas': ['Gyoza', 'Tempura', 'Entrada'],
+        'combos': ['Combo', 'Familiar', 'Variado']
+    };
+
+    Object.keys(categoriasMap).forEach(categoria => {
+        const container = document.querySelector(`[data-categoria="${categoria}"]`);
+        if (!container) return;
+
+        const productosCategoria = productos.filter(producto => {
+            return categoriasMap[categoria].some(keyword => 
+                producto.nombre.toLowerCase().includes(keyword.toLowerCase())
+            );
+        });
+
+        container.innerHTML = '';
+        
+        if (productosCategoria.length === 0) {
+            container.innerHTML = '<p class="no-productos">No hay productos en esta categoría</p>';
+            return;
+        }
+
+        productosCategoria.forEach(producto => {
+            const item = document.createElement('div');
+            item.className = 'producto-categoria-item';
+            item.innerHTML = `
+                <img src="${producto.imagen}" alt="${producto.nombre}">
+                <div class="info">
+                    <span class="nombre">${producto.nombre}</span>
+                    <span class="precio">$${producto.precio.toLocaleString()}</span>
+                    ${producto.destacado ? '<span class="badge-destacado">⭐ Destacado</span>' : ''}
+                </div>
+            `;
+            container.appendChild(item);
+        });
+    });
+}
+
+function toggleDestacado(productoId) {
+    const producto = productos.find(p => p.id === productoId);
+    if (producto) {
+        producto.destacado = !producto.destacado;
+        renderizarProductosDestacados();
+        renderizarProductosPorCategorias();
+        
+        // También actualizar la vista de productos si está activa
+        if (document.querySelector('#productos.active')) {
+            mostrarProductos();
+        }
+    }
+}
+
+// Hacer la función accesible globalmente
+window.toggleDestacado = toggleDestacado;

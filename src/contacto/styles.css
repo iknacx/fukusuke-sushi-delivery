@@ -1,6 +1,21 @@
 /* Estilos para la página de contacto */
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
 body {
     background: #f8f8f8;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Override para evitar conflictos con el CSS global */
+#app {
+    max-width: none;
     margin: 0;
     padding: 0;
 }
@@ -12,20 +27,43 @@ body {
     padding: 30px;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    width: calc(100% - 40px);
+    box-sizing: border-box;
 }
 h2 { color: #d32f2f; }
 .contact-info { margin-bottom: 20px; }
 .redes { margin-top: 20px; }
-.redes a { display: inline-block; margin-right: 15px; text-decoration: none; color: #333; font-weight: bold;}
+.redes a { 
+    display: inline-block; 
+    margin-right: 15px; 
+    text-decoration: none; 
+    color: #333; 
+    font-weight: bold;
+    word-wrap: break-word;
+    max-width: 100%;
+}
 .redes a:hover { color: #d32f2f; }
 .icon { vertical-align: middle; margin-right: 5px;}
+
+/* Asegurar que no haya overflow horizontal */
+* {
+    box-sizing: border-box;
+    max-width: 100%;
+}
+
+/* Prevenir scroll horizontal en enlaces largos */
+.contact-info a, .redes a {
+    word-break: break-all;
+    overflow-wrap: break-word;
+}
 
 /* Responsividad para la página de contacto */
 @media (max-width: 768px) {
   .container {
-    max-width: 90%;
-    margin: 20px auto;
-    padding: 20px 1rem;
+    max-width: calc(100% - 20px);
+    margin: 20px 10px;
+    padding: 20px 15px;
+    width: auto;
   }
   
   .redes a {
@@ -35,28 +73,39 @@ h2 { color: #d32f2f; }
     text-align: center;
     background: #f8f8f8;
     border-radius: 6px;
+    word-break: break-word;
   }
 }
 
 @media (max-width: 480px) {
   .container {
-    margin: 15px auto;
-    padding: 15px 0.8rem;
+    margin: 15px 8px;
+    padding: 15px 12px;
+    max-width: calc(100% - 16px);
+    width: auto;
   }
   
   h2 {
     font-size: 1.3rem;
     text-align: center;
+    margin: 0 0 1rem 0;
   }
   
   .contact-info p {
     text-align: center;
     font-size: 1.1rem;
+    margin: 0.5rem 0;
+    word-break: break-word;
   }
   
   .redes p {
     text-align: center;
     font-weight: bold;
     margin-bottom: 1rem;
+  }
+  
+  .redes a {
+    font-size: 0.9rem;
+    padding: 0.8rem 0.5rem;
   }
 }
